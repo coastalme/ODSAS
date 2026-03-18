@@ -1,0 +1,47 @@
+# Directories to ignore
+in/
+out/
+build/
+.vscode/
+
+# Build artifacts
+*.exe
+*.obj
+*.o
+*.a
+*.lib
+*.dll
+*.so
+*.dylib
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+install_manifest.txt
+
+# Visual Studio
+*.vcxproj
+*.vcxproj.filters
+*.sln
+*.vcxproj.user
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+.vs/
+
+# Compiled Object files
+*.slo
+*.lo
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,50 @@
+;======================================================================================================================
+;
+; Data file for ODSAS
+;
+; Copyright (C) 2020  Andres Payo, David Favis-Mortlock, Martin Husrt, Monica Palaseanu-Lovejoy, Cristina Torrecillas
+;
+;=====================================================================================================================
+;
+; This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public
+; License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later
+; version.
+;
+; This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+; warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License along with this program; if not, write to the Free
+; Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+;
+;======================================================================================================================
+;
+; PCU
+;
+; Run information -----------------------------------------------------------------------------------------------------
+1 Type profile                                        [0=land, 1=sea, 2=both]: 2
+2 Main output/log file names                        [omit path and extension]: feature__#
+3 DTM or GRID file (without Z)       [create_X*m_buffer_Y*m or path and name]: in/create_10m_buffer_1500m.tif ; create_XXm, creates a virtual grid of XXm resolution
+4 Still water level (m)  used to find the shoreline                          : 0    
+5 Coastline smoothing              [0=none, 1=running mean, 2=Savitsky-Golay]: 1
+
+6 Coastline smoothing window size                               [must be odd]: 15    
+7 Polynomial order for Savitsky-Golay coastline smoothing            [2 or 4]: 2
+8 Coastlines to evaluate (with ID_Coast in GIS file)         [path and name]: in/ModalWaterLines/Merged_Modal_Lines.shp; 
+9 Coastlines textfile (ID_Coast, Date, Hour and Uncertainty) [path and name]: in/ModalWaterLines/Merged_Modal_Lines.csv;
+
+; If user wants to use a given reference coast points instead of extracting it from the DTM 
+10 Shoreline point shape file (OPTIONAL GIS FILES)             [path and name]: in/Baselines/inline_fid/_#/points_along_line.gpkg
+11 Sea handiness (which side of shoreline the sea is?)[right = 0 or left = 1]: 0
+12 On which Edge is the start of user shoreline? [N = 1, E = 2, S = 3, W = 4]: 1
+13 On which Edge is the end of user shoreline?   [N = 1, E = 2, S = 3, W = 4]: 2 
+
+; Advance Run information -----------------------------------------------------------------------------------------------------
+14 GIS raster output format                         [blank=same as DEM input]: gtiff                  ; gdal-config --formats for others
+15 If needed, also output GIS raster world file?                        [y/n]: y
+16 If needed, scale GIS raster output values?                           [y/n]: y
+17 GIS vector output format                                                  : ESRI Shapefile           ; ogrinfo --formats for others e.g ESRI Shapefile
+18 Random edge for coastline search?                                    [y/n]: n
+19 Random number seed(s)                                                     : 280761
+20 Length of coastline normals (m)                                           : 1000    
+21 Vertical tolerance to consider to elevation different (m)	             : 1
+; END OF FILE ----------------------------------------------------------------------------------------------------------
