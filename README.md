@@ -1,4 +1,4 @@
-# ODSAS++ - Open Dogital Shoreline Analysis System
+# ODSAS++ - Open Digital Shoreline Analysis System
 
 ## Overview
 
