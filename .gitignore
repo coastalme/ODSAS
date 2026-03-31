@@ -45,3 +45,6 @@ __pycache__/
 # OS
 .DS_Store
 Thumbs.db
+
+# ODSAS executable
+odsas
