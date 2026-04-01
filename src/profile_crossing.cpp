@@ -419,11 +419,25 @@ void CreatePointInProfile(const std::string &profileShapefile, const std::string
     } else {
         outDir = ".";
     }
-    std::string clippedCoastPath = outDir + "/Clipped_MultiCoast.shp";
+    
+    // Determine the correct file extension based on output format
+    std::string extension;
+    if (fileformat == "ESRI Shapefile") {
+        extension = ".shp";
+    } else if (fileformat == "GPKG") {
+        extension = ".gpkg";
+    } else if (fileformat == "GeoJSON") {
+        extension = ".geojson";
+    } else {
+        // Default to shapefile for unknown formats
+        extension = ".shp";
+    }
+    
+    std::string clippedCoastPath = outDir + "/Clipped_MultiCoast" + extension;
     // Remove existing clipped file if present
     if (std::filesystem::exists(clippedCoastPath)) {
-        GDALDriver* shpDriver = GetGDALDriverManager()->GetDriverByName("ESRI Shapefile");
-        if (shpDriver) shpDriver->Delete(clippedCoastPath.c_str());
+        GDALDriver* driver = GetGDALDriverManager()->GetDriverByName(fileformat.c_str());
+        if (driver) driver->Delete(clippedCoastPath.c_str());
     }
     // Build the SQL for clipping
     char clipSQL[512];
@@ -433,7 +447,7 @@ void CreatePointInProfile(const std::string &profileShapefile, const std::string
         multiCoastLayer->GetName(),
         unionEnv.MinX, unionEnv.MinY, unionEnv.MaxX, unionEnv.MaxY);
     // Use ogr2ogr via system call for robust clipping
-    std::string ogrCmd = "ogr2ogr -f \"ESRI Shapefile\" \"" + clippedCoastPath + "\" \"" + multiCoastShapefile + "\" -dialect SQLITE -sql \"" + clipSQL + "\"";
+    std::string ogrCmd = "ogr2ogr -f \"" + fileformat + "\" \"" + clippedCoastPath + "\" \"" + multiCoastShapefile + "\" -dialect SQLITE -sql \"" + clipSQL + "\"";
     int ogrResult = std::system(ogrCmd.c_str());
     if (ogrResult != 0) {
         std::cerr << "ogr2ogr clipping failed! Command: " << ogrCmd << std::endl;

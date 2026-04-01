@@ -1,5 +1,5 @@
 # Directories to ignore
-in/
+# in/  # Include input data for examples
 out/
 build/
 .vscode/

@@ -197,6 +197,48 @@ The system handles platform-specific requirements through:
 
 ## Usage Examples
 
+### Moray Coastal Analysis Example
+
+This repository includes a complete worked example analyzing the Moray Firth coastline in Scotland. The example demonstrates all key ODSAS++ capabilities using real coastal data.
+
+#### Example Dataset
+- **Location**: Moray Firth, Scotland
+- **Data**: Historical shoreline positions with uncertainty quantification
+- **Format**: GeoPackage (GPKG) vector files and CSV metadata
+- **Analysis**: 378 shore-normal profiles, 21,377+ intersection measurements
+
+#### Quick Start with Example Data
+
+1. **Navigate to project directory**:
+   ```bash
+   cd ODSAS
+   ```
+
+2. **Configure input data** (already provided in `in/`):
+   - `Moray_HighWater_15mPoint.gpkg` - Baseline shoreline points
+   - `Moray_Processed_Output.gpkg` - Historical coastline positions  
+   - `Moray_Processed_Output.csv` - Temporal metadata and uncertainties
+   - `Moray_ODSAS_InputFile.dat` - Analysis configuration
+
+3. **Run the analysis**:
+   ```bash
+   ./odsas
+   ```
+
+4. **Check results** in `out/` directory:
+   - `normals_Moray_Log.gpkg` - Shore-normal profiles with change statistics
+   - `point_Mcoast_Moray_Log.gpkg` - Intersection points with distances
+   - `transects_stats_Moray_Log.txt` - Statistical summary
+   - `coast_Moray_Log.gpkg` - Processed coastline features
+
+#### Expected Output
+The analysis will generate:
+- **378 profiles** delineated from baseline to sea and land
+- **6,784+ unique measurement points** after quality control
+- **Multiple change metrics**: Net Shoreline Movement (NSM), End Point Rate (EPR), Linear Regression Rate (LRR)
+- **Uncertainty quantification** for all measurements
+- **GPKG format outputs** for seamless GIS integration
+
 ### Basic Analysis
 ```bash
 # Run analysis with default configuration
@@ -215,6 +257,15 @@ The system handles platform-specific requirements through:
 for config in config/*.ini; do
     ./odsas "$config"
 done
+```
+
+### Important Notes for WSL Users
+
+If editing configuration files in Windows and running in WSL, convert line endings:
+```bash
+# Convert Windows line endings to Unix format
+wsl -e sed -i 's/\r$//' ODSAS.ini
+wsl -e sed -i 's/\r$//' in/Moray_ODSAS_InputFile.dat
 ```
 
 ## Contributing
