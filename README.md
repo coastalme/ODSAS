@@ -15,6 +15,8 @@
   - [Input Files](#input-files)
   - [Configuration Parameters](#configuration-parameters)
 - [Output Products](#output-products)
+- [Visualization](#visualization)
+  - [QGIS Integration](#qgis-integration)
 - [Architecture](#architecture)
   - [Program Flow](#program-flow)
   - [Error Handling](#error-handling)
@@ -148,6 +150,44 @@ Specifies run-specific parameters and input file paths.
 
 ### Configuration Summary
 - **ODSAS Input Summary** (`.dat`): ASCII file containing complete analysis configuration details
+
+## Visualization
+
+### QGIS Integration
+
+ODSAS++ includes professional visualization capabilities for QGIS with automated styling of coastal change results.
+
+#### Automated Symbology Script
+The included `qgis_style_normals.py` script provides:
+
+- **🎨 Dynamic Color Coding**: Red (erosion) → White (stable) → Green (accretion)
+- **📏 Length Scaling**: Line lengths proportional to change magnitude ⭐ **NEW!**
+- **📊 Smart Classification**: Statistically-driven breakpoints for meaningful visualization
+- **🗺️ Publication Ready**: Professional cartographic styling suitable for reports and papers
+- **💾 Memory Layer Creation**: Preserves original data while displaying scaled visualization
+
+#### Supported Metrics
+- **NSM**: Net Shoreline Movement (total change in meters)
+- **EPR**: End Point Rate (linear change rate in m/year)  
+- **LRR**: Linear Regression Rate (trend-based rate in m/year)
+- **EPRunc**: Uncertainty quantification visualization
+- **SCE**: Shoreline Change Envelope analysis
+
+#### Quick Start Visualization
+```python
+# In QGIS Python Console
+exec(open('qgis_style_normals.py').read())
+quick_style_epr()  # Instant styling with End Point Rate and length scaling
+```
+
+#### Benefits
+- **Immediate Insights**: Line length instantly shows change magnitude
+- **Spatial Patterns**: Reveal trends not obvious in tabular data
+- **Quality Assurance**: Visual validation of analysis results  
+- **Magnitude Comparison**: Longer lines = larger changes, shorter lines = smaller changes
+- **Communication**: Professional figures for stakeholders and publications
+
+For detailed instructions, see [QGIS_VISUALIZATION.md](QGIS_VISUALIZATION.md).
 
 ## Architecture
 

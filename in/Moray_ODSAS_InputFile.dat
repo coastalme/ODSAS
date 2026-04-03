@@ -27,7 +27,7 @@
 4 Still water level (m)  used to find the shoreline                          : 0    
 5 Coastline smoothing              [0=none, 1=running mean, 2=Savitsky-Golay]: 1
 
-6 Coastline smoothing window size                               [must be odd]: 15    
+6 Coastline smoothing window size                               [must be odd]: 21    
 7 Polynomial order for Savitsky-Golay coastline smoothing            [2 or 4]: 2
 8 Coastlines to evaluate (with ID_Coast in GIS file)         [path and name]: in/Moray_Processed_Output.gpkg; 
 9 Coastlines textfile (ID_Coast, Date, Hour and Uncertainty) [path and name]: in/Moray_Processed_Output.csv;
