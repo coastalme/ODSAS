@@ -327,4 +327,4 @@ This project is licensed under the **GNU General Public License v3.0**. See the 
 
 ## References
 
-[1] Pazo,A., et al. "ODSAS: Open Digital Shoreline Analysis System." *Journal of Marine Science and Engineering* 2022, 10(1), 26. [https://doi.org/10.3390/jmse10010026](https://doi.org/10.3390/jmse10010026)
+[1] Gómez-Pazo, A., et al. "ODSAS: Open Digital Shoreline Analysis System." *Journal of Marine Science and Engineering* 2022, 10(1), 26. [https://doi.org/10.3390/jmse10010026](https://doi.org/10.3390/jmse10010026)
